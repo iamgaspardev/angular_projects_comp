@@ -1,0 +1,25 @@
+.mat-dialog-container {
+    height: 100vh;
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+
+.full-height-content {
+    flex: 1; 
+    overflow: auto; 
+}
+.custom-card {
+    display: flex;
+    border: 1px solid grey;
+    border-radius: 8px;
+    width: 100%;
+    
+    padding: 16px;
+  }
+  
+  .content-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  

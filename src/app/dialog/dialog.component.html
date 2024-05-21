@@ -1,5 +1,6 @@
 <h2 mat-dialog-title>Secondary Screening - Passenger Locator Form Address</h2>
-<mat-dialog-content class="mat-typography full-height-content mat-dialog-container" [fxLayoutAlign]="step === 2 ? 'center center' : 'center start'">
+<mat-dialog-content class="mat-typography full-height-content mat-dialog-container"
+  [fxLayoutAlign]="step === 2 ? 'center center' : 'center start'">
   <div>
     <ng-container *ngIf="step === 1">
       <!-- Step 1 content -->
@@ -106,7 +107,7 @@
   </div>
 
   <!-- Step 2 content -->
-  <div *ngIf="step === 2" >
+  <div *ngIf="step === 2">
     <button mat-flat-button color="primary" (click)="onStep(step)">Add Companion</button>
   </div>
 
@@ -158,17 +159,32 @@
       </div>
     </ng-container>
   </div>
-   <!-- Step 4 content -->
-   <div *ngIf="step === 4" >
-    <mat-card class="custom-card">
-        <mat-card-content>
-          <div class="content-row">
-            <span>Gaspar Giddson : 27Year Promised way</span>
-            <button mat-button color="primary">Edit</button>
-          </div>
-        </mat-card-content>
-      </mat-card>
-      
+  <!-- Step 4 content -->
+  <div *ngIf="step === 4">
+    <div fxLayout="column" fxLayoutGap="20px">
+      <div class="custom-card">
+        <div class="content-row">
+          <span>Gaspar Giddson : 27Year Promised way</span>
+          <button mat-stroked-button color="primary">Edit</button>
+        </div>
+      </div>
+      <div class="custom-card">
+        <div class="content-row">
+          <span>Gaspar Giddson : 27Year Promised way</span>
+          <button mat-stroked-button color="primary">Edit</button>
+        </div>
+      </div>
+      <div>
+        <button mat-stroked-button color="primary">Add another companion</button>
+      </div>
+      <div fxLayout="row" fxLayoutGap="20px" align="start">
+        <button mat-stroked-button (click)="prevStep(step)">Prev: Address</button>
+        <button mat-flat-button color="primary" (click)="onStep(step)">Next: Action taken</button>
+        
+      </div>
     </div>
+    <div>
+    </div>
+  </div>
 
 </mat-dialog-content>

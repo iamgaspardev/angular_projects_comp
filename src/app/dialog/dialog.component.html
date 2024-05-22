@@ -114,77 +114,85 @@
   <!-- Step 3 content -->
   <div>
     <ng-container *ngIf="step === 3">
-      <!-- Step 3 content -->
-      <div fxLayout="column">
-        <mat-form-field appearance="outline">
-          <mat-label>Type of Companion</mat-label>
-          <input matInput placeholder="Type of Companion">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Search from traveller list</mat-label>
-          <input matInput placeholder="First name">
-        </mat-form-field>
-      </div>
-      <div fxLayoutAlign="center center">
-        OR
-      </div>
-      <div fxLayout="row" fxLayoutGap="20px">
-        <mat-form-field appearance="outline">
-          <mat-label>First name</mat-label>
-          <input matInput placeholder="First name">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Middle name</mat-label>
-          <input matInput placeholder="Middle name">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Surname</mat-label>
-          <input matInput placeholder="Surname">
-        </mat-form-field>
-      </div>
-      <div fxLayout="row" fxLayoutGap="20px">
-        <mat-form-field appearance="outline">
-          <mat-label>Age</mat-label>
-          <input matInput placeholder="Age">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Seat number</mat-label>
-          <input matInput placeholder="Seat number">
-        </mat-form-field>
-      </div>
-      <div fxLayout="row" fxLayoutGap="20px" align="start">
-        <button mat-flat-button color="accent" (click)="step = 1">Prev : Address</button>
-        <button mat-flat-button color="primary" (click)="onStep(step)">Save and Add another</button>
-        <button mat-flat-button color="primary" (click)="onStep(step)">Save and Continue</button>
-      </div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div fxLayout="column">
+          <div fxLayout="column">
+            <label for="type-of-companion">Type of Companion</label>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Type of Companion" formControlName="typeOfCompanion">
+            </mat-form-field>
+          </div>
+          <div fxLayout="column">
+            <label for="search-traveller">Search from traveller list</label>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="First name" formControlName="searchTraveller">
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayoutAlign="center center">
+          OR
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+          <div fxLayout="column">
+            <label for="first-name">First Name</label>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="First name" formControlName="firstName">
+            </mat-form-field>
+          </div>
+          <div fxLayout="column">
+            <label for="middle-name">Middle Name</label>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Middle name" formControlName="middleName">
+            </mat-form-field>
+          </div>
+          <div fxLayout="column">
+            <label for="surname">Surname</label>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Surname" formControlName="surname">
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+          <div fxLayout="column">
+            <label for="age">Age</label>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Age" formControlName="age">
+            </mat-form-field>
+          </div>
+          <div fxLayout="column">
+            <label for="seat-number">Seat number</label>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Seat number" formControlName="seatNumber">
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" align="start">
+          <button mat-flat-button color="accent" (click)="prevStep(step)">Prev : Address</button>
+          <button mat-flat-button color="primary" type="submit">Save and Add another</button>
+          <button mat-flat-button color="primary" type="submit">Save and Continue</button>
+        </div>
+      </form>
     </ng-container>
   </div>
+  
   <!-- Step 4 content -->
-  <div *ngIf="step === 4">
+   <div *ngIf="step === 4">
     <div fxLayout="column" fxLayoutGap="20px">
-      <div class="custom-card">
+      <div *ngFor="let companion of companions" class="custom-card">
         <div class="content-row">
-          <span>Gaspar Giddson : 27Year Promised way</span>
-          <button mat-stroked-button color="primary">Edit</button>
-        </div>
-      </div>
-      <div class="custom-card">
-        <div class="content-row">
-          <span>Gaspar Giddson : 27Year Promised way</span>
+          <span>{{ companion.firstName }} {{ companion.surname }} : {{ companion.age }} Year</span>
           <button mat-stroked-button color="primary">Edit</button>
         </div>
       </div>
       <div>
-        <button mat-stroked-button color="primary">Add another companion</button>
+        <button mat-stroked-button color="primary" (click)="step = 3">Add another companion</button>
       </div>
       <div fxLayout="row" fxLayoutGap="20px" align="start">
         <button mat-stroked-button (click)="prevStep(step)">Prev: Address</button>
         <button mat-flat-button color="primary" (click)="onStep(step)">Next: Action taken</button>
-        
       </div>
     </div>
-    <div>
-    </div>
   </div>
+  
 
 </mat-dialog-content>
